@@ -16,7 +16,7 @@ for (let i = 0; i < 2; i++) {
 
     if ( typeof(a)=== 'string' && typeof(a) != null && typeof(b) != null
         && a != '' && b != '' && a.length < 50) {
-            console.log('Doneу');
+            console.log('Done');
             appData.expenses[a] = b;
             console.log(i);
         } else {
@@ -36,9 +36,10 @@ for (let i = 0; i < 2; i++) {
 //         appData.expenses[a] = b;
 //         i++;
 //         console.log(appData);
+//         console.log(i);
 //     } 
 //     else {
-//         i = i == 1;
+//         i = i--;
 //     };
 // };
 
@@ -52,9 +53,10 @@ for (let i = 0; i < 2; i++) {
 //     && a != '' && b != '' && a.length < 50) {
 //         appData.expenses[a] = b;
 //         i++; 
+//         console.log(appData);
+//         console.log(i);
 //     } 
 //     else {
-//         i = i == 1;
+//         i = i--;
 //     }
-//     console.log(appData);
 // } while (i < 2);
