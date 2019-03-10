@@ -27,18 +27,15 @@ yearValue = document.querySelector('.year-value'),
 monthValue = document.querySelector('.month-value'),
 dayValue = document.querySelector('.day-value');
 
-
 let money,
-    time;
-
-let appData = {
+    time,
+    appData = {
     budget: money,
     timaData: time,
     expenses: {},
     optionalExpenses: {},
     income: [],
     savings: false
-
 };
 
 btnExpenses.disabled = true;
@@ -151,9 +148,9 @@ percent.addEventListener('input', function() {
     }
 });
 
-
+//блокируем кнопку "Утвердить"
 let countExpensesItems = {};
-expensesItems.forEach(function(item, i) {
+expensesItems.forEach( function(item, i) {
 	item.addEventListener('input', function() {
 		if (item.value) {
 			countExpensesItems[i] = item.value;
@@ -165,6 +162,7 @@ expensesItems.forEach(function(item, i) {
 	});
 });
 
+//блокируем кнопку "Утвердить"
 let countOptionalExpensesItem = {};
 optionalExpensesItem.forEach( function (item, i) {
 	item.addEventListener('input', function () {
