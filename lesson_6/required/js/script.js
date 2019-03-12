@@ -38,9 +38,12 @@ let money,
     savings: false
 };
 
-btnExpenses.disabled = true;
-btnOptionalExpenses.disabled = true;
-btnCountBudget.disabled = true;
+document.addEventListener("DOMContentLoaded", function () {
+    btnExpenses.setAttribute('disabled', true);
+    btnOptionalExpenses.setAttribute('disabled', true);
+    btnCountBudget.setAttribute('disabled', true);
+
+});
 
 startBtn.addEventListener('click', function() {
     time = prompt("Введите дату в формате YYYY-MM-DD", "");
@@ -55,26 +58,28 @@ startBtn.addEventListener('click', function() {
     yearValue.value = new Date(Date.parse(time)).getFullYear();
     monthValue.value = new Date(Date.parse(time)).getMonth() + 1;
     dayValue.value = new Date(Date.parse(time)).getDate();
+
+    btnExpenses.toggleAttribute('disabled', false);
+    btnCountBudget.toggleAttribute('disabled', false);
 });
 
-btnExpenses.addEventListener('click', function() {
+btnExpenses.addEventListener('click', function () {
+    
     let sum = 0;
 
     for (let i = 0; i < expensesItems.length; i++) {
         let a = expensesItems[i].value,
-            b = expensesItems[++i].value; 
-    
-        if ( typeof(a) === 'string' && typeof(a) != null && typeof(b) != null
-            && a != '' && b != '' && a.length < 50) {
-                console.log('Done');
-                appData.expenses[a] = b;
-                sum += +b;
-            } else {
-                i--;
-            }
-    }
+            b = +expensesItems[++i].value;
+
+        if ((typeof (a)) === 'string' && (typeof (b)) === 'number' && (typeof (a)) != null &&
+            (typeof (b)) != null && a != '' && b != '' && a.length < 50) {
+            //console.log('Done');
+            appData.expenses[a] = b;
+            sum += b;
+        } 
+
     expensesValue.textContent = sum;
-    btnCountBudget.disabled = false;
+}
 });
 
 btnOptionalExpenses.addEventListener('click', function () {
@@ -86,13 +91,24 @@ btnOptionalExpenses.addEventListener('click', function () {
         }
 });
 
+
+btnOptionalExpenses.addEventListener('click', function () {
+    let arr = '';
+        for (let i = 0; i < optionalExpensesItem.length; i++) {
+            let a = optionalExpensesItem[i].value;
+            appData.optionalExpenses[i] = a;
+            arr += appData.optionalExpenses[i] + ' ';
+        }
+        optionalExpensesValue.textContent = arr;
+});
+
+
 btnCountBudget.addEventListener('click', function() {
 
-    const expen = +expensesValue.textContent;
-    console.log('expen = ' + expen);
+    const exp = +expensesValue.textContent;
 
     if(appData.budget != undefined) {
-        appData.moneyPerDay = ((appData.budget - expen) / 30).toFixed();
+        appData.moneyPerDay = ((appData.budget - exp) / 30).toFixed();
 
         dayBudgetValue.textContent = appData.moneyPerDay;
     
@@ -148,32 +164,42 @@ percent.addEventListener('input', function() {
     }
 });
 
-//блокируем кнопку "Утвердить"
-let countExpensesItems = {};
-expensesItems.forEach( function(item, i) {
-	item.addEventListener('input', function() {
-		if (item.value) {
-			countExpensesItems[i] = item.value;
-		}
-		let count = Object.getOwnPropertyNames(countExpensesItems);
-		if (count.length == expensesItems.length) {
-			btnExpenses.disabled = false;
-		} 
-	});
-});
+expensesItems.forEach(function(item, i, arr) {
+        item.addEventListener('input', function () {
+            if (item.getAttribute("placeholder") == "Наименование" && arr[i].value != '') {
+                // console.log(typeof(arr[i].value));
+                btnExpenses.toggleAttribute("disabled", false);
+            } else if (item.getAttribute("placeholder") == "Цена" && arr[i].value != '') {
+                // console.log(typeof(arr[i].value));
+                btnExpenses.toggleAttribute("disabled", false);
+            }
+        });
+    // console.log(i%2);
+    if (i%2 != 0) {
+        item.addEventListener('input', function () {
+            if (!this.value.match("^[0-9]+$")) {
+                this.value = this.value.slice(0, -1);
+            }
+        });
+    }
+  });
 
-//блокируем кнопку "Утвердить"
-let countOptionalExpensesItem = {};
-optionalExpensesItem.forEach( function (item, i) {
-	item.addEventListener('input', function () {
-		if (item.value) {
-			countOptionalExpensesItem[i] = item.value;
-		}
-        const count = Object.getOwnPropertyNames(countOptionalExpensesItem);
-		if (count.length == optionalExpensesItem.length) {
-			btnOptionalExpenses.disabled = false;
-		} 
-	});
-});
+  optionalExpensesItem.forEach(function(item) {
+    item.addEventListener('input', function () {
+            btnOptionalExpenses.toggleAttribute("disabled", false);
+    });
+    item.addEventListener('input', function () {
+        if (!this.value.match("^[a-zа-яё]+$")) {
+            console.log(this.value);
+            this.value = this.value.slice(0, -1);
+        }
+    });
+  });
 
-// console.log(appData);
+
+// // console.log(appData);
+
+// let animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
+
+// console.log(animals.slice());
+
