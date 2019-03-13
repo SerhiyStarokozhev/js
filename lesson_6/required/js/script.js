@@ -170,14 +170,13 @@ expensesItems.forEach(function(item, i, arr) {
                 btnExpenses.toggleAttribute("disabled", false);
             } else if (item.getAttribute("placeholder") == "Цена" && arr[i].value != '') {
                 btnExpenses.toggleAttribute("disabled", false);
-            } else {
-                btnExpenses.toggleAttribute("disabled", true);
-            }
+            } 
         });
-    // console.log(i%2);
+
     if (i%2 != 0) {
         item.addEventListener('input', function () {
-            if (!this.value.match("^[0-9]+$")) {
+            if (!this.value.match("^[0-9]+$") || !(arr[i-1].value && arr[i].value)) {
+                btnExpenses.toggleAttribute("disabled", true);
                 this.value = this.value.slice(0, -1);
             }
         });
