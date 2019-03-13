@@ -167,11 +167,11 @@ percent.addEventListener('input', function() {
 expensesItems.forEach(function(item, i, arr) {
         item.addEventListener('input', function () {
             if (item.getAttribute("placeholder") == "Наименование" && arr[i].value != '') {
-                // console.log(typeof(arr[i].value));
                 btnExpenses.toggleAttribute("disabled", false);
             } else if (item.getAttribute("placeholder") == "Цена" && arr[i].value != '') {
-                // console.log(typeof(arr[i].value));
                 btnExpenses.toggleAttribute("disabled", false);
+            } else {
+                btnExpenses.toggleAttribute("disabled", true);
             }
         });
     // console.log(i%2);
@@ -190,7 +190,7 @@ expensesItems.forEach(function(item, i, arr) {
     });
     item.addEventListener('input', function () {
         if (!this.value.match("^[a-zа-яё]+$")) {
-            console.log(this.value);
+            btnOptionalExpenses.toggleAttribute("disabled", true);
             this.value = this.value.slice(0, -1);
         }
     });
