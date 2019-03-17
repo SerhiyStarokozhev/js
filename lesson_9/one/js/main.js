@@ -89,7 +89,7 @@ let tab = document.querySelectorAll('.info-header-tab'),
     let more = document.querySelector('.more'),
         overlay = document.querySelector('.overlay'),
         close = document.querySelector('.popup-close'),
-        allBtn = document.querySelectorAll('.description-btn');
+        allBtn = document.querySelectorAll('.description-btn, .more');
 
         allBtn.forEach(function (item) {
             openPopup(item);
@@ -98,7 +98,7 @@ let tab = document.querySelectorAll('.info-header-tab'),
     function openPopup(btn) {
         btn.addEventListener('click', function () {
             overlay.style.display = 'block';
-            this.classList.add('more-spash');
+            this.classList.add('more-splash');
             document.body.style.overflow = 'hidden';
         });
     }
