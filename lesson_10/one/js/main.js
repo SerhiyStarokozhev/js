@@ -25,12 +25,12 @@ let tab = document.querySelectorAll('.info-header-tab'),
         let target = event.target;
 
         if(target && target.classList.contains('info-header-tab')){
-            for (let i = 0; i < tab.length; i++){
-                if(target == tab[i]){
+            tab.forEach((item,i) => {
+                if (target == item) {
                     hideTabContent(0);
                     showTabContent(i);
                 }
-            }
+            }); 
         }
     });
 
