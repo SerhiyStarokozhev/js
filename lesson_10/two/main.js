@@ -1,5 +1,5 @@
 class Options {
-    constructor (height, width, bg, fontSize, textAlign) {
+    constructor (height = '50px', width = "200px", bg = 'green', fontSize = '20px', textAlign = 'center') {
         this.height = height;
         this.width = width;
         this.bg = bg;
@@ -11,15 +11,15 @@ class Options {
         let div = document.createElement('div');
         
         div.textContent = txt;
-        div.style.cssText = `height:${this.height}px;
+        div.style.cssText = `height:${this.height};
         background-color:${this.bg};
-        width:${this.width}px;
+        width:${this.width};
         font-size:${this.fontSize};
         text-align:${this.textAlign};`;
 		document.body.appendChild(div);
     }
 }
 
-let option = new Options(100, 400, 'green', 55, 'center');
+let option = new Options();
 
 option.func('Академия Верстки');
