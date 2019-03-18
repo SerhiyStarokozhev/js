@@ -86,27 +86,30 @@ let tab = document.querySelectorAll('.info-header-tab'),
 
     //Modal 
 
-    let more = document.querySelector('.more'),
-        overlay = document.querySelector('.overlay'),
+    let overlay = document.querySelector('.overlay'),
         close = document.querySelector('.popup-close'),
-        allBtn = document.querySelectorAll('.description-btn, .more');
-
-        allBtn.forEach( (item) => {
-            openPopup(item);
-        });
+        allBtn = document.querySelectorAll('.more, .description-btn');
 
     function openPopup(btn) {
-        btn.addEventListener('click', () => {
+        if(!overlay.style.display || overlay.style.display === 'none') {
             overlay.style.display = 'block';
-            this.classList.add('more-splash');
+            btn.classList.add('more-splash');
             document.body.style.overflow = 'hidden';
-        });
+        } else {
+            overlay.style.display = 'none';
+            btn.classList.remove('more-splash');
+            document.body.style.overflow = '';
+        }
     }
 
-        close.addEventListener('click', () => {
-            overlay.style.display = 'none';
-            more.classList.remove('more-splash');
-            document.body.style.overflow = '';
+        allBtn.forEach( item => {
+            item.addEventListener('click', function () {
+                openPopup(this);
+            });
+        });
+
+        close.addEventListener('click', function () {
+            openPopup(this);
         });
 
 });
