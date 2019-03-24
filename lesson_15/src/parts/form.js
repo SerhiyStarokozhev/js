@@ -56,11 +56,11 @@ function form () {
               }
             }
             postData(formData)
-              .then(() => statusMessage.innerHTML = message.loading)
+              .then(() => statusMessage.textContent = message.loading)
               .then(() => {
-                statusMessage.innerHTML = message.success;
+                statusMessage.textContent = message.success;
               })
-              .catch(() => statusMessage.innerHTML = message.failure)
+              .catch(() => statusMessage.textContent = message.failure)
               .then(clearInput);
           }); 
       }

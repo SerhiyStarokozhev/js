@@ -7,9 +7,7 @@ function calc () {
         daysSum = 0,
         total = 0;
 
-        // console.log(place);
-
-        totalValue.innerHTML = 0;
+        totalValue.textContent = 0;
 
     persons.addEventListener('keydown', (event) => {
         numbers(event);
@@ -24,9 +22,9 @@ function calc () {
         }
         
         if(restDays.value == ''){
-            totalValue.innerHTML = 0;
+            totalValue.textContent = 0;
         } else {
-            totalValue.innerHTML = total;
+            totalValue.textContent = total;
         }
     });
 
@@ -43,18 +41,18 @@ function calc () {
         }
         
         if(persons.value == ''){
-            totalValue.innerHTML = 0;
+            totalValue.textContent = 0;
         } else {
-            totalValue.innerHTML = total;
+            totalValue.textContent = total;
         }
     });
 
     place.addEventListener('change', function() {
         if(restDays.value == '' || persons.value == '') {
-            totalValue.innerHTML = 0;
+            totalValue.textContent = 0;
         }else {
             let a = total;
-            totalValue.innerHTML = a * this.options[this.selectedIndex].value;
+            totalValue.textContent = a * this.options[this.selectedIndex].value;
         }
     });
 
