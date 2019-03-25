@@ -3,7 +3,7 @@ function modal () {
     close = document.querySelector('.popup-close'),
     allBtn = document.querySelectorAll('.more, .description-btn');
 
-function openPopup(btn) {
+function modal(btn) {
     if(!overlay.style.display || overlay.style.display === 'none') {
         overlay.style.display = 'block';
         btn.classList.add('more-splash');
@@ -17,12 +17,12 @@ function openPopup(btn) {
 
     allBtn.forEach( item => {
         item.addEventListener('click', function () {
-            openPopup(this);
+            modal(this);
         });
     });
 
     close.addEventListener('click', function () {
-        openPopup(this);
+        modal(this);
     });
 }
 
