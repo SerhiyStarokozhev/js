@@ -1,4 +1,4 @@
-require('formdata-polyfill')
+require('formdata-polyfill');
 require('es6-promise').polyfill();
 
 window.addEventListener('DOMContentLoaded', () => {
